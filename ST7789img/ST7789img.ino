@@ -1,11 +1,12 @@
 // This example is based on this tutorial
 // https://www.instructables.com/id/Converting-Images-to-Flash-Memory-Iconsimages-for-/
 // https://github.com/STEMpedia/eviveProjects/blob/master/imageToFlashMemoryIconsForTFT/
+// https://github.com/maditnerd/st7789_bitmap
 
 //Don't forget to change User_Setup.h inside TFT_eSPI library !
 
 #include <TFT_eSPI.h>
-#include "bitmap.h" //(Bitmap generated with LCD Image Converter) https://sourceforge.net/projects/lcd-image-converter/
+#include "bitmap_rgb565.h" //(Bitmap generated with LCD Image Converter) https://sourceforge.net/projects/lcd-image-converter/
 TFT_eSPI tft = TFT_eSPI();   // Invoke library
 
 void setup(void) {
