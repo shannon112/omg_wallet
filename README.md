@@ -7,7 +7,7 @@ select board: Node32s
 select port
 download https://github.com/Bodmer/TFT_eSPI zip
 add .ZIP library
-
+change TFT_eSPI/User_Setup.h
 sudo chown shanlee /dev/ttyUSB0
 ```
 python2
