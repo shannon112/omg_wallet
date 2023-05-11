@@ -4,9 +4,9 @@ offline image wallet
 add additional boards manager URLs: https://dl.espressif.com/dl/package_esp32_index.json
 go to board manager install: esp32
 select board: Node32s
-select port
+select port: /dev/ttyUSB0
 download https://github.com/Bodmer/TFT_eSPI zip
-add .ZIP library
+add .ZIP library: TFT_eSPI-master.zip
 change TFT_eSPI/User_Setup.h
 sudo chown shanlee /dev/ttyUSB0
 ```
