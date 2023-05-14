@@ -8,11 +8,6 @@
 
 #include <WiFiClientSecure.h>
 
-// Buffer size, 128 bytes in this case
-#define RESP_BUFFER_LENGTH 99999
-// Pointer to actual buffer
-uint8_t * _buffer = new uint8_t[RESP_BUFFER_LENGTH];
-
 const char* ssid     = "Lee Home";     // your network SSID (name of wifi network)
 const char* password = "0920998891"; // your network password
 
@@ -112,7 +107,11 @@ void setup() {
     // from the server, read them and print them:
     while (client.available()) {
       String response = client.readString(); 
-      Serial.println(response);
+
+      int responseAboutAlbumImagesFrom = response.indexOf("\"album_images\"");
+      int responseAboutAlbumImagesTo = response.indexOf("\"adConfig\"");
+      String responseAboutAlbumImages = response.substring(responseAboutAlbumImagesFrom, responseAboutAlbumImagesTo);
+      Serial.println(responseAboutAlbumImages);
     }
 
     client.stop();
