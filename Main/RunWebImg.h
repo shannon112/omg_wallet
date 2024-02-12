@@ -77,11 +77,14 @@ void runWebImg()
   WiFi.begin(my_ssid, my_password);
 
   // attempt to connect to Wifi network:
+  int count = 0;
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
     // wait 1 second for re-trying
-    delay(1000);
+    digitalWrite(pinkBuiltInLedPin, count++ % 2);
+    delay(500);
   }
+  digitalWrite(pinkBuiltInLedPin, HIGH);
 
   Serial.print("Connected to ");
   Serial.println(my_ssid);
@@ -97,4 +100,6 @@ void runWebImg()
   TJpgDec.drawFsJpg(0, 0, "/M81.jpg");
   t = millis() - t;
   Serial.print(t); Serial.println(" ms to draw to TFT");
+
+  WiFi.disconnect(); // to eliminate the blinking on the screen
 }
