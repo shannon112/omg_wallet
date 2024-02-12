@@ -1,4 +1,5 @@
-#include "RunDemo.h" 
+#include "RunDefaultImg.h" 
+#include "RunWebImg.h" 
 #include "RunSetup.h" 
 
 // parameter details
@@ -11,6 +12,8 @@ int pinStatPrev = 1;
 int pinStatCurr = 1;
 bool isDemoMode = true; // else it's setup mode
 
+TFT_eSPI tft = TFT_eSPI();         // Invoke custom library
+
 void setup() {
   // serial port setup
   Serial.begin(921600);
@@ -21,9 +24,10 @@ void setup() {
   pinMode(rightButtonPin, INPUT_PULLUP);
   pinMode(pinkBuiltInLedPin, OUTPUT);
   pinMode(blueLedPin, OUTPUT);
+  tft.begin();     // initialize a ST7789 chip
 
   // home img in default
-  runDemo();
+  runDefaultImg();
 }
 
 void loop() {
@@ -35,7 +39,7 @@ void loop() {
   // execute actions
   if (shouldSetup) {
     runSetup();
-    runDemo();
+    runWebImg();
   }
 
   // end

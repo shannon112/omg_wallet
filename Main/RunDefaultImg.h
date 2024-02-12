@@ -4,15 +4,15 @@
 
 extern const int pinkBuiltInLedPin;
 extern const int blueLedPin;
-TFT_eSPI tft = TFT_eSPI();   // Invoke library
+extern TFT_eSPI tft;   // Invoke library
 
-void runDemo() {
-  Serial.println("runDemo");
+void runDefaultImg() {
+  Serial.println("runDefaultImg");
   digitalWrite(pinkBuiltInLedPin, HIGH);
   digitalWrite(blueLedPin, LOW);
 
-  tft.begin();     // initialize a ST7789 chip
   tft.setSwapBytes(true); // Swap the byte order for pushImage() - corrects endianness
   tft.fillScreen(TFT_BLACK);
   tft.pushImage(0,0,240,320,epd_bitmap_demo);
+  tft.setSwapBytes(false); // Swap the byte order for pushImage() - corrects endianness
 }

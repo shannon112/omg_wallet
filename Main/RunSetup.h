@@ -1,4 +1,4 @@
-#include <WiFi.h>
+#include <WiFiClientSecure.h>
 
 extern const int pinkBuiltInLedPin;
 extern const int blueLedPin;
