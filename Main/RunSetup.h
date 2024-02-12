@@ -10,9 +10,6 @@ IPAddress local_IP(192, 168, 5, 20);
 IPAddress gateway(192, 168, 5, 1);
 IPAddress subnet(255, 255, 255, 0);
 
-// Set web server port number to 80
-WiFiServer server(80);
-
 // Variable to store the HTTP request
 String header;
 String mySSID;
@@ -23,6 +20,9 @@ void runSetup() {
   Serial.println("Start to setup..");
   digitalWrite(pinkBuiltInLedPin, LOW);
   digitalWrite(blueLedPin, HIGH);
+
+  // Set web server port number to 80
+  WiFiServer server(80);
 
   // Setup Wifi AP mode
   Serial.print("Setting AP (Access Point)…");
@@ -127,6 +127,6 @@ void runSetup() {
     }
   }
 
-
+  WiFi.softAPdisconnect (true); // to stop high freq blinking on screen
   Serial.println("Finished setup...");
 }
