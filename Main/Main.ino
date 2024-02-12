@@ -8,9 +8,13 @@ const int leftButtonPin = 12;
 const int rightButtonPin = 13;
 const int pinkBuiltInLedPin = LED_BUILTIN;
 const int blueLedPin = 33;
+
 int pinStatPrev = 1;
 int pinStatCurr = 1;
-bool isDemoMode = true; // else it's setup mode
+
+String mySSID;
+String myPassword;
+String myURL;
 
 TFT_eSPI tft = TFT_eSPI();         // Invoke custom library
 

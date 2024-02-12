@@ -12,9 +12,9 @@ IPAddress subnet(255, 255, 255, 0);
 
 // Variable to store the HTTP request
 String header;
-String mySSID;
-String myPassword;
-String myURL;
+extern String mySSID;
+extern String myPassword;
+extern String myURL;
 
 void runSetup() {
   Serial.println("Start to setup..");
@@ -94,16 +94,19 @@ void runSetup() {
             int ssidStart = header.indexOf("wifiSsid=");
             int ssidEnd = header.indexOf("&", ssidStart);
             String submittedSSID = header.substring(ssidStart + 9, ssidEnd);
+            submittedSSID.replace("+", " ");
             if (submittedSSID != "") mySSID = submittedSSID;
 
             int pwdStart = header.indexOf("wifiPwd=");
             int pwdEnd = header.indexOf("&", pwdStart);
             String submittedPassword = header.substring(pwdStart + 8, pwdEnd);
-            if (submittedPassword != "") myPassword = submittedSSID;
+            if (submittedPassword != "") myPassword = submittedPassword;
 
             int urlStart = header.indexOf("photoUrl=");
             int urlEnd = header.indexOf(" ", urlStart);
             String submittedURL = header.substring(urlStart + 9, urlEnd);
+            submittedURL.replace("%3A", ":");
+            submittedURL.replace("%2F", "/");
             if (submittedURL != "") myURL = submittedURL;
 
             Serial.println("");

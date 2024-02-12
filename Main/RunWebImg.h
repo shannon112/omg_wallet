@@ -1,7 +1,3 @@
-// Chenge next 2 lines to suit your WiFi network
-const char* my_ssid     = "Lee Home";     // your network SSID (name of wifi network)
-const char* my_password = "0920998891"; // your network my_password
-
 // Include the jpeg decoder library
 #include <TJpg_Decoder.h>
 
@@ -21,7 +17,12 @@ const char* my_password = "0920998891"; // your network my_password
 // Include the TFT library https://github.com/Bodmer/TFT_eSPI
 #include "SPI.h"
 #include <TFT_eSPI.h>              // Hardware-specific library
+
 extern TFT_eSPI tft;         // Invoke custom library
+
+extern String mySSID;
+extern String myPassword;
+extern String myURL; // https://i.imgur.com/C77RWcq.jpg for test
 
 // This next function will be called during decoding of the jpeg file to
 // render each block to the TFT.  If you use a different TFT library
@@ -72,9 +73,10 @@ void runWebImg()
   TJpgDec.setCallback(tft_output);
 
   // Initialise the Wifi
-  Serial.print("Attempting to connect to SSID: ");
-  Serial.println(my_ssid);
-  WiFi.begin(my_ssid, my_password);
+  Serial.print("Attempting to connect to SSID with PWD");
+  Serial.print(mySSID.c_str());
+  Serial.println(myPassword.c_str());
+  WiFi.begin(mySSID.c_str(), myPassword.c_str());
 
   // attempt to connect to Wifi network:
   int count = 0;
@@ -87,17 +89,17 @@ void runWebImg()
   digitalWrite(pinkBuiltInLedPin, HIGH);
 
   Serial.print("Connected to ");
-  Serial.println(my_ssid);
+  Serial.println(mySSID.c_str());
 
   // Fetch the jpg file from the specified URL, examples only, from imgur
   uint32_t t = millis();
-  bool loaded_ok = getFile("https://i.imgur.com/C77RWcq.jpg", "/M81.jpg"); // Note name preceded with "/"
+  bool loaded_ok = getFile(myURL, "/webImg.jpg"); // Note name preceded with "/"
   t = millis() - t;
   if (loaded_ok) { Serial.print(t); Serial.println(" ms to download"); }
 
   // Now draw the SPIFFS file
   t = millis();
-  TJpgDec.drawFsJpg(0, 0, "/M81.jpg");
+  TJpgDec.drawFsJpg(0, 0, "/webImg.jpg");
   t = millis() - t;
   Serial.print(t); Serial.println(" ms to draw to TFT");
 
