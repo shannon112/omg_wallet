@@ -42,12 +42,6 @@ void setup() {
 
 void loop(){
   WiFiClient client = server.available();   // Listen for incoming clients
-  Serial.print("mySSID: ");
-  Serial.println(mySSID);
-  Serial.print("myPassword: ");
-  Serial.println(myPassword);
-  Serial.print("myURL: ");
-  Serial.println(myURL);
 
   if (client) {                             // If a new client connects,
     Serial.println("New Client.");          // print a message out in the serial port
@@ -115,6 +109,13 @@ void loop(){
           int urlEnd = header.indexOf(" ", urlStart);
           String submittedURL = header.substring(urlStart + 9, urlEnd);
           if (submittedURL != "") myURL=submittedURL;
+
+          Serial.print("mySSID: ");
+          Serial.println(mySSID);
+          Serial.print("myPassword: ");
+          Serial.println(myPassword);
+          Serial.print("myURL: ");
+          Serial.println(myURL);
         }
       }
     }
