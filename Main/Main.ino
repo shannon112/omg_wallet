@@ -9,12 +9,19 @@ const int rightButtonPin = 13;
 const int pinkBuiltInLedPin = LED_BUILTIN;
 const int blueLedPin = 33;
 
-int pinStatPrev = 1;
-int pinStatCurr = 1;
+int syncPinStatPrev = 1;
+int syncPinStatCurr = 1;
+int negLeftPinStatPrev = 1;
+int negLeftPinStatCurr = 1;
+int posRightPinStatPrev = 1;
+int posRightPinStatCurr = 1;
 
 String mySSID;
 String myPassword;
-String myURL;
+String myURLPrev = "";
+String myURLCurr = "";
+
+int imgIndex = 1;
 
 TFT_eSPI tft = TFT_eSPI();         // Invoke custom library
 
@@ -31,19 +38,48 @@ void setup() {
   tft.begin();     // initialize a ST7789 chip
 
   // home img in default
-  runDefaultImg();
+  runDefaultImg(0);
 }
 
 void loop() {
   // read button
-  pinStatPrev = pinStatCurr;
-  pinStatCurr = digitalRead(modePin);
-  const bool shouldSetup = pinStatPrev == 1 && pinStatCurr == 0;
+  syncPinStatPrev = syncPinStatCurr;
+  syncPinStatCurr = digitalRead(modePin);
+  const bool shouldSetup = syncPinStatPrev == 1 && syncPinStatCurr == 0;
+
+  negLeftPinStatPrev = negLeftPinStatCurr;
+  negLeftPinStatCurr = digitalRead(leftButtonPin);
+  const bool shouldNegOne = negLeftPinStatPrev == 1 && negLeftPinStatCurr == 0;
+
+  posRightPinStatPrev = posRightPinStatCurr;
+  posRightPinStatCurr = digitalRead(rightButtonPin);
+  const bool shouldPosOne = posRightPinStatPrev == 1 && posRightPinStatCurr == 0;
 
   // execute actions
   if (shouldSetup) {
     runSetup();
     runWebImg();
+    imgIndex = 0;
+  }
+
+  if (shouldNegOne)
+  {
+    imgIndex = (imgIndex -1 > 0) ? imgIndex -1 : imgIndex;
+  }
+  if (shouldPosOne)
+  {
+    imgIndex = imgIndex + 1;
+  }
+
+  if (shouldPosOne || shouldNegOne)
+  {
+    if (imgIndex % 3 == 0){
+      runWebImg();
+    }else if (imgIndex % 3 == 1){
+      runDefaultImg(0);
+    }else if (imgIndex % 3 == 2){
+      runDefaultImg(1);    
+    }
   }
 
   // end

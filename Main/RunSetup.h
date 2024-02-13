@@ -14,7 +14,8 @@ IPAddress subnet(255, 255, 255, 0);
 String header;
 extern String mySSID;
 extern String myPassword;
-extern String myURL;
+extern String myURLPrev;
+extern String myURLCurr;
 
 void runSetup() {
   Serial.println("Start to setup..");
@@ -107,15 +108,15 @@ void runSetup() {
             String submittedURL = header.substring(urlStart + 9, urlEnd);
             submittedURL.replace("%3A", ":");
             submittedURL.replace("%2F", "/");
-            if (submittedURL != "") myURL = submittedURL;
+            if (submittedURL != "") myURLCurr = submittedURL;
 
             Serial.println("");
             Serial.print("mySSID: ");
             Serial.println(mySSID);
             Serial.print("myPassword: ");
             Serial.println(myPassword);
-            Serial.print("myURL: ");
-            Serial.println(myURL);
+            Serial.print("myURLCurr: ");
+            Serial.println(myURLCurr);
             isNewInfoFilled = true;
             break;
           }
