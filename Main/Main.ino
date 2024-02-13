@@ -38,7 +38,7 @@ void setup() {
   tft.begin();     // initialize a ST7789 chip
 
   // home img in default
-  runDefaultImg(0);
+  runDefaultImg(1);
 }
 
 void loop() {
