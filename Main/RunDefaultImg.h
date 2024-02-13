@@ -1,5 +1,5 @@
 #include <TFT_eSPI.h>
-#include "bitmap_rgb565.h" //(Bitmap generated with LCD Image Converter) https://sourceforge.net/projects/lcd-image-converter/
+#include "Beach_Bitmap_rgb565.h" //(Bitmap generated with LCD Image Converter) https://sourceforge.net/projects/lcd-image-converter/
 //Don't forget to change User_Setup.h inside TFT_eSPI library !
 
 extern const int pinkBuiltInLedPin;
