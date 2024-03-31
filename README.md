@@ -1,6 +1,6 @@
 # omg_wallet
-### An Offline iMaGe Wallet (omg_wallet): Digital Photo Frame on ESP32 with LCD screen display, local Wifi setup and internet Imgur Image downloading 
-
+#### An Offline iMaGe Wallet (omg_wallet): Digital Photo Frame on ESP32 with LCD screen display, local Wifi setup and internet Imgur Image downloading 
+<img src="https://github.com/shannon112/omg_wallet/blob/main/demo.png" width=400>
 
 # Setup
 ```
