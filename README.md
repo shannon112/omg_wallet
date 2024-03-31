@@ -13,3 +13,7 @@ add .ZIP library: TFT_eSPI-master.zip
 change TFT_eSPI/User_Setup.h
 sudo chown shanlee /dev/ttyUSB0
 ```
+
+# Demo
+video: https://www.youtube.com/shorts/gmmmnjHEx9Y
+<img src="https://github.com/shannon112/omg_wallet/blob/main/demo2.png" width=800>
