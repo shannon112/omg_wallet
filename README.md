@@ -1,5 +1,8 @@
 # omg_wallet
-offline image wallet
+### An Offline iMaGe Wallet (omg_wallet): Digital Photo Frame on ESP32 with LCD screen display, local Wifi setup and internet Imgur Image downloading 
+
+
+# Setup
 ```
 add additional boards manager URLs: https://dl.espressif.com/dl/package_esp32_index.json
 go to board manager install: esp32
@@ -9,13 +12,4 @@ download https://github.com/Bodmer/TFT_eSPI zip
 add .ZIP library: TFT_eSPI-master.zip
 change TFT_eSPI/User_Setup.h
 sudo chown shanlee /dev/ttyUSB0
-```
-python2
-```
-cd /usr/bin
-sudo ln -s python2.7 python
-curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py
-python get-pip.py
-sudo apt install python-pip
-python -m pip install pyserial
 ```
